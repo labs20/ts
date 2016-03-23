@@ -1,0 +1,13 @@
+// Created by labs on 19/02/16.
+
+#integracoes.ui.fluid.container
+
+    div.ui.grid(style='height: 100%;')
+
+        // Submenu
+        div.right.aligned.column
+            div.ui.basic.white.tiny.buttons.sub-menu
+                each item in menu.rows[1].submenu
+                    button.ui.button.menu-submenu(class=item.api)
+                        i(class=item.icon)
+                        label= item.label

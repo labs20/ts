@@ -1,0 +1,26 @@
+//
+   Created by labs on 21/02/16.
+
+// Header
+.ts-header
+    .col.col10 ID
+    .col.col80 Mapeamento de Clientes
+    .col.col5 &nbsp;
+    .col.col5 &nbsp;
+
+// Linhas
+.ts-rows(style='height: calc(100% - 34px);')
+    .row(
+        rv-each-row='data.map_clientes_key.rows',
+            rv-row='row.map_clientes_key',
+            rv-on-click='actions.hello'
+    )
+    .col.col10.col_action {row.map_clientes_key}
+    .col.col80
+        | {row.ext_cliente_id} - {row.ext_nome}
+        br
+        i.mini-info ({row.cardcode} - {row.cardname})
+    .col.col4.green.ui.icon.button(data-popup='edit')
+        i.edit.icon
+    .col.col5.red.ui.icon.button(data-call='delete')
+        i.delete.icon

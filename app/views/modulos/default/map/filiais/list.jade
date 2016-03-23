@@ -1,0 +1,12 @@
+//
+   Created by labs on 21/02/16.
+
+div.ui.fluid.card(rv-each-row='data.rows')
+    div.left.aligned.content
+        div.header {row.map_filiais_key} - {row.whscode}
+        input(rv-value="row.bplname")
+        div.description
+        |    {row.cardcode} - {row.cardname}
+        a.ui.orange.right.ribbon.label(rv-unless="row._key_ | isNumeric'") Novo
+    button.ui.orange.icon.button(rv-data-action='api.form', rv-data-key='row.map_filiais_key')
+        i.edit.icon

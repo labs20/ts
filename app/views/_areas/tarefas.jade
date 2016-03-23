@@ -1,0 +1,74 @@
+// Created by labs on 19/02/16.
+
+#tarefas.ui.fluid.container
+
+
+    div.ui.grid(style='height: 100%;')
+
+        // Menu
+        div.four.wide.column
+            div.ui.cards(style='margin: 2px')
+                div.card(style='box-shadow: 0px 0px 15px -2px black !important; border-radius: 5px')
+                    .content
+                        i.left.floated.big.circular.checkmark.icon
+                        .header Tarefas
+                        .meta Gest&atilde;o das tarefas operacionais
+                        .description
+
+                    .extra.content
+                        div.ui.styled.fluid.accordion.tarefas
+                            section(rv-each-item='tarefas')
+                                .title
+                                    i.dropdown.icon
+                                    | {item.label}
+                                    i.hidden.yellow.warning.sign.transition.looping.pulse.slow.icon
+
+                                .content
+                                    div.ui.celled.list
+                                        .item.cursor(rv-each-row='item.submenu')
+                                            i(rv-class='row.icon')
+                                            .content
+                                                a {row.label}
+                                                i.hidden.yellow.warning.sign.transition.looping.pulse.slow.icon
+                                                .meta
+                                                |    {row.info}
+
+        // Area Central
+        div.twelve.wide.right.aligned.column
+
+            // Submenu
+            div.ui.basic.white.tiny.buttons.sub-menu
+                each item in menu.rows[0].submenu
+                    button.ui.button.menu-submenu(class=item.api)
+                        i(class=item.icon)
+                        label= item.label
+
+            // Janela central
+            #tarefas_list.left.aligned.hz-box.ts-round.ts-center.ts-hidden(style='height: 84%; width: 94%;')
+                .secondary.ui.menu
+
+                    // Título da janela
+                    h3.ui.left.aligned.dividing.fluid.header
+                        i.icon(rv-class='info.icon')
+                        .content
+                            |   {info.titulo}
+                            .sub.header {info.info}
+
+                    // Área de pesquisa e botões
+                    .right.menu
+                        .item
+                            div.ui.green.icon.add.button(data-popup='insert')
+                                i.home.add.icon
+                            div.ui.mini.icon.input.search
+                                input#search(type='text', placeholder='Pesquisar...', data-filter='#painel_list .rows', data-el='.row')
+                                .ui.icon.button
+                                    i.search.icon
+
+                // Listagem
+                #tarefas_listagem.cards.ui(style='height: 88%; overflow: scroll;')
+                    div.ui.fluid.card(rv-each-row='data.rows')
+                        div.left.aligned.content
+                            div.header {row.map_clientes_key}
+                            div.meta Friend
+                            div.description
+                                Elliot Fu is a film-maker from New York.
